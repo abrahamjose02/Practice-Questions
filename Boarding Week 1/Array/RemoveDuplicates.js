@@ -18,3 +18,23 @@ function RemoveDuplicate(arr){
 const arr = [1, 2, 3, 3, 4, 4, 5]
 
 console.log(RemoveDuplicate(arr))
+
+
+//or
+
+
+
+
+function removeDuplicatesFromArray(arr){
+    const map = new Map()
+    const result = []
+    for(let item of arr){
+      if(!map.has(item)){
+        map.set(item,true)
+        result.push(item)
+      }
+    }
+    return result
+  }
+  
+  
