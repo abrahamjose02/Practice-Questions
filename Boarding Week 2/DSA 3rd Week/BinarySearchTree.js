@@ -239,6 +239,37 @@ class BinarySearchTree{
         }
         return node.value
     }
+    findThirdLargest() {
+        this.count = 0;
+        this.thirdLargest = null;
+        this.reverseInOrder(this.root);
+        return this.thirdLargest;
+    }
+
+    reverseInOrder(root) {
+        if (root === null || this.count >= 3) {
+            return;
+        }
+
+        // First visit the right subtree (larger elements)
+        if (root.right) {
+            this.reverseInOrder(root.right);
+        }
+
+        // Increment the count for each node visited
+        this.count++;
+
+        // When count reaches 3, store the third largest element
+        if (this.count === 3) {
+            this.thirdLargest = root.value;
+            return; // Stop traversal once we find the third largest
+        }
+
+        // Then visit the left subtree (smaller elements)
+        if (root.left) {
+            this.reverseInOrder(root.left);
+        }
+    }
 }
 
 
@@ -252,5 +283,8 @@ bst.preOrder(bst.root)
 bst.inOrder(bst.root)
 
 console.log(bst.isBalanced())
+
+const thirdLargest = bst.findThirdLargest();
+console.log("Third largest element:", thirdLargest);
 
 
