@@ -253,6 +253,23 @@ class LinkedList{
         return reverseListHead; // Return the new head of the reversed list
     }
 
+    removeOddNumbers(){
+        if(this.head && this.head.value % 2 !==0){
+            this.head = this.head.next
+            this.size-- 
+        }
+        let current = this.head
+        while(current && current.next){
+            if(current.next.value % 2 !==0){
+                current.next = current.next.next
+                this.size--
+            }
+            else{
+                current = current.next
+            }
+        }
+    }
+
     print(){
         if(this.isEmpty()){
             return ''
@@ -268,19 +285,22 @@ class LinkedList{
 }
 
 const list = new LinkedList()
-list.prepend(10)
+list.prepend(1)
 list.append(20)
-list.append(10)
+list.prepend(3)
+list.prepend(40)
 
-list.insertValue(40,2)
+// list.insertValue(40,2)
 
-list.removeIndex(2)
+// list.removeIndex(2)
 
-list.deleteMiddleNode()
+// list.deleteMiddleNode()
 
-list.reverse()
+// list.reverse()
 
-list.RemoveDuplicates()
+// list.RemoveDuplicates()
+
+list.removeOddNumbers()
 
 list.print()
 console.log(list.isPalindrome())
