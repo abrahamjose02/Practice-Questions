@@ -1,16 +1,27 @@
-
-function longestRepeatingChar(str){
-    let currentLength = 0;
-    let maxLength = 0;
-    let currentChar = "";
-    let maxChar = "";
-
-    for(let i=0;i<str.length;i++){
-        if(i===0 || str[i]===str[i-1]){
-            currentChar += str[i]
-            currentLength++
+function longestRepeatingCharSequence(str){
+    if(str.length === 0) return ''
+    let maxChar = str[0]
+    let maxCount = 1;
+    let currentChar = str[0]
+    let currentCount = 1;
+    for(let i=1;i<str.length;i++){
+        if(str[i]=== currentChar){
+            currentCount++
+        }
+        else {
+            if(currentCount > maxCount){
+                maxChar = currentChar
+                maxCount = currentCount
+            }
+            currentChar = str[i]
+            currentCount = 1;
         }
     }
+    if(currentCount > maxCount){
+        maxChar = currentChar
+        maxCount = currentCount
+    }
+     return maxChar.repeat(maxCount)
 }
 
-console.log(longestRepeatingChar("heeguuuu"));
+console.log(longestRepeatingCharSequence("heeguuuu"));
