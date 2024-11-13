@@ -109,6 +109,40 @@ class Graph{
         }
         return false; // No cycle in this path
     }
+
+     // Method to count the number of cycles in the graph
+     countCycles() {
+        const visited = new Set();
+        let cycleCount = 0;
+
+        // Traverse each vertex to ensure all connected components are considered
+        for (let vertex in this.adjacencyList) {
+            if (!visited.has(vertex)) {
+                cycleCount += this.dfsCycleCount(vertex, visited, null);
+            }
+        }
+        
+        // Since each cycle is counted twice, divide by 2
+        return cycleCount / 2;
+    }
+
+    // Helper method for counting cycles using DFS
+    dfsCycleCount(vertex, visited, parent) {
+        visited.add(vertex);
+        let cycleCount = 0;
+
+        for (let neighbor of this.adjacencyList[vertex]) {
+            if (!visited.has(neighbor)) {
+                // Recurse to check the neighbor
+                cycleCount += this.dfsCycleCount(neighbor, visited, vertex);
+            } else if (neighbor !== parent) {
+                // If a back edge (to a non-parent visited node) is found, a cycle exists
+                cycleCount += 1;
+            }
+        }
+
+        return cycleCount;
+    }
 }
 const g = new Graph()
 
