@@ -1,10 +1,18 @@
-const promise1 = Promise.resolve('Promise 1 resolved');
-const promise2 = Promise.reject('Promise 2 rejected');
-const promise3 = new Promise((resolve, reject) => setTimeout(resolve, 100, 'Promise 3 resolved'));
-Promise.allSettled([promise1, promise2, promise3])
-    .then((value) => {
-        console.log(value); 
-    })
-    .catch((error) => {
-        console.log(error); 
-    });
+const express = require('express')
+const app = express()
+
+app.get('/users/:userId/orders/:orderId',(req,res)=>{
+    const userId = req.params.userId
+    const orderId = req.params.orderId
+    console.log(`${userId} and ${orderId}`)
+})
+
+app.get('/search',(req,res)=>{
+    const category = req.query.category
+    const author = req.query.author
+    console.log(`${category} and ${author}`)
+})
+
+app.listen(3000,()=>{
+    console.log('Server running on 3000')
+})
