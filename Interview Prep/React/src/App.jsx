@@ -1,11 +1,13 @@
-import Button from "./components/Button"
+
+import TimerComponent from "./components/TimerComponent"
+import TodoList from "./components/TodoList"
 
 
 function App() {
 
   return (
     <div>
-      <Button/>
+      <TodoList/>
     </div>
   )
 }
