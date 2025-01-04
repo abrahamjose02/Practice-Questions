@@ -1,5 +1,4 @@
 
-import TimerComponent from "./components/TimerComponent"
 import TodoList from "./components/TodoList"
 
 
